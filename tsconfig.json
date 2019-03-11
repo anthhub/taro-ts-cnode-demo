@@ -1,26 +1,27 @@
 {
-  "compilerOptions": {
-    "target": "es2015",
-    "module": "esnext",
-    "removeComments": false,
-    "preserveConstEnums": true,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "jsxFactory": "Taro.createElement",
-    "noImplicitAny": false,
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop" : true,
-    "outDir": "lib",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "strictNullChecks": true,
-    "sourceMap": true,
-    "baseUrl": ".",
-    "rootDir": ".",
-    "jsx": "preserve",
-    "typeRoots": [
-      "node_modules/@types"
-    ]
-  },
-  "compileOnSave": false
+    "compilerOptions": {
+        "target": "es2015",
+        "module": "esnext",
+        "removeComments": false,
+        "preserveConstEnums": true,
+        "moduleResolution": "node",
+        "experimentalDecorators": true,
+        "jsxFactory": "Taro.createElement",
+        "noImplicitAny": false,
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "outDir": "lib",
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "strictNullChecks": true,
+        "sourceMap": true,
+        "jsx": "preserve",
+        "rootDirs": ["./src"],
+        "baseUrl": "./",
+        "paths": {
+            "@*": ["src/*"]
+        },
+        "typeRoots": ["node", "node_modules/@types", "./typings"]
+    },
+    "compileOnSave": false
 }

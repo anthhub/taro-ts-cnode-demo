@@ -4,7 +4,7 @@ let fieldStore = {}
  *  实体类基类
  */
 class EntityBase<T> {
-    constructor(props: T) {}
+    constructor(_props: T) {}
 }
 
 /**
@@ -12,8 +12,9 @@ class EntityBase<T> {
  */
 
 function Entity<T extends new (...args: any[]) => {}>(constructor: T) {
+    // tslint:disable-next-line: max-classes-per-file
     return class extends constructor {
-        constructor(...props) {
+        constructor(...props: any[]) {
             super()
             if (!props.length) {
                 return
@@ -34,7 +35,7 @@ function FiledName(param?: string) {
     if (!param) {
         return
     }
-    return (target, key) => {
+    return (_target, key) => {
         fieldStore[key] = param
     }
 }

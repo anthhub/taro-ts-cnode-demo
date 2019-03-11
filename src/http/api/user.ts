@@ -9,6 +9,4 @@ export default {
     register(data: IAcount) {
         return http.post('register', data || {}, PRO_URL) as Promise<any>
     },
-
-    // logout = (data: IAcount) => http.post('logout', data || {}, PRO_URL) as Promise<any>
 }

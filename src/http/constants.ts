@@ -1,3 +1,4 @@
+
 const rootPath = "https://cnodejs.org/api/v1";
 const apiObject = {
   gettopics: rootPath + "/topics", //获取话题列表
