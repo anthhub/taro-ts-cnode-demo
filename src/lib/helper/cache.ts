@@ -1,5 +1,5 @@
 import Taro from "@tarojs/taro"
-import { IValue } from "../interfaces/ICache"
+import { IValue } from "../../interfaces/ICache"
 // 设置缓存
 export function setCahce(key: string, value: IValue): void {
   let params: any = value
