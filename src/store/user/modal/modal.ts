@@ -1,4 +1,4 @@
-import { action, observable, reaction, runInAction } from 'mobx'
+import { observable } from 'mobx'
 
 import { StoreExt } from '@lib/extent/store'
 
@@ -20,7 +20,5 @@ export class UserModal extends StoreExt {
         this.effects()
     }
 
-    protected async effects() {
-        // reaction()
-    }
+    protected effects(): void {}
 }

@@ -12,13 +12,6 @@ export default {
     createTopic(data?) {
         return request.post(apiObject.createTopic, data || {}) as Promise<Result<null>>
     },
-    replyTopic(data?) {
-        return request.post(apiObject.replyTopic, data || {}) as Promise<Result<null>>
-    },
-    upReply(data?) {
-        return request.post(apiObject.createTopic, data || {}) as Promise<Result<null>>
-    },
-
     updateTopic(data?) {
         return request.post(apiObject.replyTopic, data || {}) as Promise<Result<null>>
     },

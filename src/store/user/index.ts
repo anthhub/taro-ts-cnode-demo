@@ -1,7 +1,7 @@
-import { StoreExt } from '@utils/reactExt'
+import { StoreExt } from '@lib/extent/store'
+import { RootStore } from '@store'
 
 import { UserModal } from './modal/modal'
-import { RootStore } from '@store'
 
 export class UserStore extends StoreExt {
     userModal: UserModal = new UserModal(this)
@@ -13,4 +13,5 @@ export class UserStore extends StoreExt {
         super()
         this.rootStore = rootStore
     }
+    protected effects(): void {}
 }
