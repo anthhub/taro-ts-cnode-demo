@@ -1,12 +1,12 @@
-import { PRO_URL } from '@config/index'
-import http from '@http/axios'
+import { Result } from '@entities/common'
+import apiObject from '@http/constants'
+import request from '@http/request'
 
 export default {
-    login(data: IAcount) {
-        return http.post('login', data || {}, PRO_URL) as Promise<IAuth>
+    checkUserToken(data) {
+        return request.post(apiObject.checkUserToken, data || {}) as Promise<Result<IAuth>>
     },
-
-    register(data: IAcount) {
-        return http.post('register', data || {}, PRO_URL) as Promise<any>
+    getUserInfo(data) {
+        return request.post(apiObject.getUserInfo, data || {}) as Promise<Result<IUser>>
     },
 }
