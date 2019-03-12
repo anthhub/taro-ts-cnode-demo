@@ -1,3 +1,3 @@
-import { Auth } from './user/user'
+import { Auth } from './user/index'
 
 declare interface IAuth extends Auth {}
