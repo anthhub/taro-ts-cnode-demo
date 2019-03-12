@@ -2,28 +2,23 @@ import { Button, View } from '@tarojs/components'
 import { BaseEvent } from '@tarojs/components/types/common'
 import { inject, observer } from '@tarojs/mobx'
 import Taro, { Component, PageConfig } from '@tarojs/taro'
-import { ComponentClass } from 'react'
+
 import MIcon from '../../components/icon'
-import paging from '../../lib/decorator/paging'
-import wishShare from '../../lib/decorator/wishShare'
-import CounterStore from '../../store1/counter'
+
 import './index.scss'
 
-export interface IPageProps {
-    counter: CounterStore
+interface IStoreProps {
+    countStore: ICounterStore
 }
 
-export interface IPageState {}
-
-interface Index {
-    props: IPageProps
-}
-
-@inject('counter')
+@inject(
+    (store: IStore): IStoreProps => {
+        const { countStore } = store
+        return { countStore }
+    }
+)
 @observer
-@wishShare()
-@paging()
-class Index extends Component {
+class Index extends Component<IStoreProps> {
     config: PageConfig = {
         navigationBarTitleText: '首页',
         enablePullDownRefresh: true,
@@ -39,17 +34,17 @@ class Index extends Component {
 
     handleDecrement = (event: BaseEvent) => {
         const dataset = event.target.dataset
-        this.props.counter.decrement(dataset.number)
+        this.props.countStore.decrement(dataset.number)
     }
 
     handleIncrement = (event: BaseEvent) => {
         const dataset = event.target.dataset
-        this.props.counter.increment(dataset.number)
+        this.props.countStore.increment(dataset.number)
     }
 
     render() {
-        const { counter } = this.props
-        const number = counter.counter
+        const { countStore } = this.props
+        const number = countStore.counter
         return (
             <View>
                 改一下
@@ -74,4 +69,4 @@ class Index extends Component {
     }
 }
 
-export default Index as ComponentClass<IPageProps, IPageState>
+export default Index

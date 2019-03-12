@@ -1,4 +1,4 @@
-import { CountStore } from '@store/tset'
+import { CountStore } from '@store/test'
 import { UserStore } from '@store/user'
 
 export class RootStore {
