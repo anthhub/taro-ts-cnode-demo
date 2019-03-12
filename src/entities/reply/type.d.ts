@@ -1,7 +1,6 @@
-import { Auth, Acount, User } from './index'
+import { Reply, RecentReply } from './index'
 
 declare global {
-    interface IAuth extends Auth {}
-    interface IAcount extends Acount {}
-    interface IUser extends User {}
+    interface IReply extends Reply {}
+    interface IRecentReply extends RecentReply {}
 }

@@ -1,25 +1,22 @@
-// import '@tarojs/async-await'
+import '@tarojs/async-await'
 
-// import Taro from '@tarojs/taro'
+import Taro from '@tarojs/taro'
 
-// export function getJSON(url, data) {
-//     Taro.showLoading()
-//     return Taro.request({ url: url, data: data, method: 'GET' }).then(result => {
-//         Taro.hideLoading()
-//         return result
-//     })
-// }
-// export function postJSON(url, data) {
-//     Taro.showLoading()
-//     return Taro.request({
-//         header: {
-//             'content-type': 'application/json',
-//         },
-//         url: url,
-//         data: data,
-//         method: 'POST',
-//     }).then(result => {
-//         Taro.hideLoading()
-//         return result
-//     })
-// }
+class Req {
+    get(url, data) {
+        return this.request({ url, data: data || {}, method: 'GET' })
+    }
+
+    post(url, data) {
+        return this.request({ header: { 'content-type': 'application/json' }, url, data: data || {}, method: 'POST' })
+    }
+
+    private async request(options) {
+        Taro.showLoading({ title: '全力请求中!', mask: true })
+        const result = ((await Taro.request(options)) as unknown) as Promise<IResult>
+        Taro.hideLoading()
+        return result
+    }
+}
+
+export default new Req()
