@@ -17,7 +17,7 @@ export class User extends EntityBase<User> {
 
 @Entity
 export class Auth extends EntityBase<Auth> {
-    id: string
+    readonly id: string
     loginname: string
     avatar_url: string
 }

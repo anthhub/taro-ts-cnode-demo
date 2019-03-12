@@ -4,7 +4,7 @@ import { Entity, EntityBase } from '@lib/decorator/entity'
 
 @Entity
 export class Topic extends EntityBase<Topic> {
-    id: string
+    readonly id: string
     author_id: string
     tab: string
     content: string
@@ -30,7 +30,7 @@ export class TopicDetail extends Topic {
 
 @Entity
 export class RecentTopic extends EntityBase<RecentTopic> {
-    id: string
+    readonly id: string
     author: Author
     title: string
     last_reply_at: string

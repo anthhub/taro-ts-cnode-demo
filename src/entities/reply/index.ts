@@ -3,7 +3,7 @@ import { Entity, EntityBase } from '@lib/decorator/entity'
 
 @Entity
 export class Reply extends EntityBase<Reply> {
-    id: string
+    readonly id: string
     author: Author
     content: string
     ups: string[]
@@ -14,7 +14,7 @@ export class Reply extends EntityBase<Reply> {
 
 @Entity
 export class RecentReply extends EntityBase<RecentReply> {
-    id: string
+    readonly id: string
     author: Author
     title: string
     last_reply_at: string

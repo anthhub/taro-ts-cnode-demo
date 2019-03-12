@@ -1,13 +1,13 @@
 import { UserStore } from '@store/user'
-import { ViewStore } from '@store/view'
+// import { ViewStore } from '@store/view'
 
 export class RootStore {
     userStore: UserStore
-    viewStore: ViewStore
+    // viewStore: ViewStore
 
     constructor() {
         this.userStore = new UserStore(this)
-        this.viewStore = new ViewStore(this)
+        // this.viewStore = new ViewStore(this)
     }
 }
 
