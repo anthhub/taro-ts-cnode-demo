@@ -3,24 +3,23 @@ import apiObject from '@http/constants'
 import request from '@http/request'
 
 export default {
-    getTopics(data) {
+    getTopics(data?) {
         return request.get(apiObject.getTopics, data || {}) as Promise<Result<ITopic[]>>
     },
-    getTopicInfo(data) {
+    getTopicInfo(data?: { id: string }) {
         return request.get(apiObject.getTopicInfo, data || {}) as Promise<Result<ITopicDetail>>
     },
-    createTopic(data) {
+    createTopic(data?) {
         return request.post(apiObject.createTopic, data || {}) as Promise<Result<null>>
     },
-    replyTopic(data) {
+    replyTopic(data?) {
         return request.post(apiObject.replyTopic, data || {}) as Promise<Result<null>>
     },
-
-    upReply(data) {
+    upReply(data?) {
         return request.post(apiObject.createTopic, data || {}) as Promise<Result<null>>
     },
 
-    updateTopic(data) {
+    updateTopic(data?) {
         return request.post(apiObject.replyTopic, data || {}) as Promise<Result<null>>
     },
 }

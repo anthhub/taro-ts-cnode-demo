@@ -1,5 +1,6 @@
 import '@tarojs/async-await'
 
+import { Result } from '@entities/common'
 import Taro from '@tarojs/taro'
 
 class Req {
@@ -13,7 +14,7 @@ class Req {
 
     private async request(options) {
         Taro.showLoading({ title: '全力请求中!', mask: true })
-        const result = ((await Taro.request(options)) as unknown) as Promise<IResult>
+        const result = ((await Taro.request(options)) as unknown) as Promise<Result<any>>
         Taro.hideLoading()
         return result
     }
