@@ -3,7 +3,6 @@ import './app.scss'
 
 import es6Promise from 'es6-promise'
 
-import { pagesMap } from '@store/global/data'
 import { Provider } from '@tarojs/mobx'
 import Taro, { Component, Config } from '@tarojs/taro'
 
@@ -13,7 +12,7 @@ es6Promise.polyfill()
 
 class App extends Component {
     config: Config = {
-        pages: Object.values(pagesMap),
+        pages: ['pages/index/index'],
 
         window: {
             backgroundTextStyle: 'light',

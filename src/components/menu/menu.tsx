@@ -5,8 +5,7 @@ import { AtDrawer } from 'taro-ui'
 
 import { Image, Text, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
-import Taro from '@tarojs/taro'
-import { CompExt } from '@lib/extent/comp'
+import Taro, { Component } from '@tarojs/taro'
 
 // import { changeCata, hideDrawer, showDrawer } from '../../actions/menu'
 // import { validateUser } from '../../actions/user'
@@ -39,7 +38,7 @@ interface IProps {
     return { countStore }
 })
 @observer
-class Menu extends CompExt<IProps> {
+class Menu extends Component<IProps> {
     //显示抽屉
     showDrawer() {
         // this.props.showMenu && this.props.showMenu()
