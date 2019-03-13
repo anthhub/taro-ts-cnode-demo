@@ -1,20 +1,21 @@
 import './menu.less'
 
+import { autobind } from 'core-decorators'
 // import { connect } from '@tarojs/redux'
 import { AtDrawer } from 'taro-ui'
 
 import { Image, Text, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
 import Taro, { Component } from '@tarojs/taro'
-import { autobind } from 'core-decorators'
 
 // import { changeCata, hideDrawer, showDrawer } from '../../actions/menu'
 // import { validateUser } from '../../actions/user'
 
 interface IProps {
     viewStore?: IViewStore
+    globalStore?: IGlobalStore
 }
-@inject(({ viewStore }: IStore) => ({ viewStore }))
+@inject(({ viewStore, globalStore }: IStore) => ({ viewStore, globalStore }))
 @observer
 @autobind
 class Menu extends Component<IProps> {
@@ -25,13 +26,8 @@ class Menu extends Component<IProps> {
     }
 
     toUser() {
-        // let { user } = this.props
-        // validateUser(user).then(result => {
-        //     if (result) {
-        //         //成功跳转到用户详情
-        // Taro.navigateTo({ url: '/pages/user/user' })
-        //     }
-        // })
+        const { navigateTo } = this.props.globalStore
+        navigateTo('user')
     }
     render() {
         const { drawerVisible, showDrawer, hideDrawer, cataData, currentCata } = this.props.viewStore
@@ -39,12 +35,13 @@ class Menu extends Component<IProps> {
         return (
             <View className="topiclist-menu">
                 <AtDrawer
+                    className="atdrawer"
                     onClose={hideDrawer}
                     onItemClick={this.clickCata}
-                    style="position:absolute;"
                     show={drawerVisible}
                     items={items}
                 />
+
                 <Image onClick={showDrawer} className="image  left" src={require('../../assets/img/cata.png')} />
                 <Text onClick={hideDrawer}>{currentCata.value} </Text>
                 <Image onClick={this.toUser} className="image right" src={require('../../assets/img/login.png')} />

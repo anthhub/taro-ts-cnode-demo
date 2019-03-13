@@ -18,11 +18,20 @@ export class GlobalStore extends StoreExt {
         this.rootStore = rootStore
     }
 
-    navigateTo(url: Pages) {
-        if (!this.pagesMap[url]) {
+    navigateTo(page: Pages) {
+        if (!this.pagesMap[page]) {
             return
         }
-        Taro.navigateTo({ url: this.pagesMap[url] })
+
+        if (page === 'user') {
+            // 用户页面鉴权
+            if (!this.rootStore.userStore.validateUser()) {
+                Taro.navigateTo({ url: this.pagesMap.login })
+                return
+            }
+        }
+
+        Taro.navigateTo({ url: this.pagesMap[page] })
     }
 
     protected effects(): void {}
