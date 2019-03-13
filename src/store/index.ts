@@ -1,15 +1,16 @@
+import { GlobalStore } from '@store/global'
 import { CountStore } from '@store/test'
 import { UserStore } from '@store/user'
 
 export class RootStore {
     userStore: UserStore
     countStore: CountStore
-    // viewStore: ViewStore
+    globalStore: GlobalStore
 
     constructor() {
         this.userStore = new UserStore(this)
         this.countStore = new CountStore(this)
-        // this.viewStore = new ViewStore(this)
+        this.globalStore = new GlobalStore(this)
     }
 }
 

@@ -38,7 +38,8 @@ const config = {
     weapp: {},
     h5: {
         publicPath: '/',
-        staticDirectory: 'static',
+        // staticDirectory: 'static',
+        esnextModules: ['taro-ui'],
         module: {
             postcss: {
                 autoprefixer: {

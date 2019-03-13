@@ -1,12 +1,12 @@
 import './menu.less'
 
 // import { connect } from '@tarojs/redux'
-import { ComponentClass } from 'react'
+import { AtDrawer } from 'taro-ui'
 
-// import { AtDrawer } from 'taro-ui'
 import { Image, Text, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
-import Taro, { Component } from '@tarojs/taro'
+import Taro from '@tarojs/taro'
+import { CompExt } from '@lib/extent/comp'
 
 // import { changeCata, hideDrawer, showDrawer } from '../../actions/menu'
 // import { validateUser } from '../../actions/user'
@@ -34,16 +34,12 @@ interface IProps {
     countStore?: ICounterStore
 }
 
-interface Menu {
-    props: IProps
-}
-
 @inject((store: IStore) => {
     const { countStore } = store
     return { countStore }
 })
 @observer
-class Menu extends Component {
+class Menu extends CompExt<IProps> {
     //显示抽屉
     showDrawer() {
         // this.props.showMenu && this.props.showMenu()
@@ -68,7 +64,7 @@ class Menu extends Component {
         // validateUser(user).then(result => {
         //     if (result) {
         //         //成功跳转到用户详情
-        //         Taro.navigateTo({ url: '/pages/user/user' })
+        Taro.navigateTo({ url: '/pages/user/user' })
         //     }
         // })
     }
@@ -77,13 +73,13 @@ class Menu extends Component {
         // let items = this.getItems(cataData) //获取分类列表
         return (
             <View className="topiclist-menu">
-                {/* <AtDrawer
+                <AtDrawer
                     onClose={this.closeDrawer}
                     onItemClick={this.clickCata}
                     style="position:absolute;"
-                    show={showDrawer}
-                    items={items}
-                /> */}
+                    // show={showDrawer || null}
+                    // items={items || null}
+                />
                 <Image onClick={this.showDrawer} className="image  left" src={require('../../assets/img/cata.png')} />
                 <Text>menu </Text>
                 <Image onClick={this.toUser} className="image right" src={require('../../assets/img/login.png')} />
@@ -92,4 +88,4 @@ class Menu extends Component {
     }
 }
 
-export default (Menu as unknown) as ComponentClass<IProps>
+export default Menu

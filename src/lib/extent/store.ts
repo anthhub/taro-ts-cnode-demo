@@ -1,4 +1,5 @@
 import * as api from '@http/'
+
 import Taro from '@tarojs/taro'
 
 export abstract class StoreExt {
