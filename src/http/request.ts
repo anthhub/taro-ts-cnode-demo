@@ -15,8 +15,8 @@ class Req {
     private async request(options) {
         Taro.showLoading({ title: '全力请求中!', mask: true })
         try {
-            const result = ((await Taro.request(options)) as unknown) as Promise<Result<any>>
-            return result
+            const result = await Taro.request(options)
+            return result.data as Promise<Result<any>>
         } catch (error) {
             Taro.showToast({ title: '请求异常' })
             return null

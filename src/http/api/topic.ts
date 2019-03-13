@@ -4,7 +4,7 @@ import request from '@http/request'
 
 export default {
     getTopics(data?) {
-        return request.get(apiObject.getTopics, data || {}) as Promise<Result<ITopic[]>>
+        return request.get(apiObject.getTopics, data || { limit: 20 }) as Promise<Result<ITopic[]>>
     },
     getTopicInfo(data?: { id: string }) {
         return request.get(apiObject.getTopicInfo, data || {}) as Promise<Result<ITopicDetail>>
