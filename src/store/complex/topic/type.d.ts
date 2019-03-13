@@ -1,4 +1,4 @@
-import { TopicStore } from './index1'
+import { TopicStore } from './index'
 
 declare global {
     interface ITopicStore extends TopicStore {}

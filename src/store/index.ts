@@ -1,6 +1,6 @@
 import { autobind } from 'core-decorators'
 
-import { TopicStore } from '@store/complex/topic/index1'
+import { TopicStore } from '@store/complex/topic'
 import { GlobalStore } from '@store/global'
 import { CountStore } from '@store/test'
 import { UserStore } from '@store/user'

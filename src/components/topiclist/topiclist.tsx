@@ -1,11 +1,11 @@
-import { Button, ScrollView, Text, View } from '@tarojs/components'
-import { inject, observer } from '@tarojs/mobx'
-
-import Taro, { Component } from '@tarojs/taro'
 import { autobind } from 'core-decorators'
 
+import { ScrollView } from '@tarojs/components'
+import { inject, observer } from '@tarojs/mobx'
+import Taro, { Component } from '@tarojs/taro'
+
 // import { getNextList, getTopicList } from '../../actions/topiclist'
-// import Topic from './topic'
+import Topic from './topic'
 
 // @connect(
 //   function(store) {
@@ -25,8 +25,9 @@ import { autobind } from 'core-decorators'
 interface IProps {
     viewStore?: IViewStore
     globalStore?: IGlobalStore
+    topicStore?: ITopicStore
 }
-@inject(({ viewStore, globalStore }: IStore) => ({ viewStore, globalStore }))
+@inject(({ viewStore, globalStore, topicStore }: IStore) => ({ viewStore, globalStore, topicStore }))
 @observer
 @autobind
 class TopicList extends Component<IProps> {
@@ -40,13 +41,12 @@ class TopicList extends Component<IProps> {
         // this.props.getNextList && this.props.getNextList({ page: page + 1, limit, tab: currentCata.key })
     }
     render() {
-        let { list } = this.props
+        const { topicList } = this.props.topicStore
         return (
             <ScrollView style={{ height: '650PX' }} onScrollToLower={this.onScrollToLower.bind(this)} scrollY={true}>
-                {list.map(
-                    item => '123'
-                    // <Topic item={item} />
-                )}
+                {topicList.map(item => (
+                    <Topic item={item} />
+                ))}
             </ScrollView>
         )
     }

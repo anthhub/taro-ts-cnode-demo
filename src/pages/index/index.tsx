@@ -1,7 +1,7 @@
 import './index.less'
 
 import Menu from '@components/menu/menu'
-// import TopicList from '@components/topiclist/topiclist'
+import TopicList from '@components/topiclist/topiclist'
 import { View } from '@tarojs/components'
 import Taro, { Component, PageConfig } from '@tarojs/taro'
 
@@ -14,7 +14,7 @@ class Index extends Component {
         return (
             <View className="index">
                 <Menu />
-                {/* <TopicList /> */}
+                <TopicList />
             </View>
         )
     }

@@ -7,7 +7,7 @@ import { RootStore } from '@store'
 @autobind
 export class ViewStore extends StoreExt {
     @observable
-    drawerVisible = true
+    drawerVisible = false
 
     @observable
     cataData = [
