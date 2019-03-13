@@ -2,8 +2,9 @@ import { observable } from 'mobx'
 
 import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
-import { pagesMap, Pages } from './data'
 import Taro from '@tarojs/taro'
+
+import { Pages, pagesMap } from './data'
 
 export class GlobalStore extends StoreExt {
     @observable

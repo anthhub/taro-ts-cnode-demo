@@ -30,19 +30,11 @@ import Taro, { Component } from '@tarojs/taro'
 // )
 
 interface IProps {
-    countStore?: ICounterStore
+    viewStore?: IViewStore
 }
-
-@inject((store: IStore) => {
-    const { countStore } = store
-    return { countStore }
-})
+@inject(({ viewStore }: IStore) => ({ viewStore }))
 @observer
 class Menu extends Component<IProps> {
-    //显示抽屉
-    showDrawer() {
-        // this.props.showMenu && this.props.showMenu()
-    }
     getItems(cataData) {
         // return cataData.map(item => item.value)
     }
@@ -54,10 +46,7 @@ class Menu extends Component<IProps> {
         //     this.props.changeCata && this.props.changeCata(clickCata) //点击分类 触发切换分类方法
         // }
     }
-    //关闭抽屉时触发
-    closeDrawer() {
-        // this.props.hideDrawer && this.props.hideDrawer()
-    }
+
     toUser() {
         // let { user } = this.props
         // validateUser(user).then(result => {
@@ -68,19 +57,20 @@ class Menu extends Component<IProps> {
         // })
     }
     render() {
-        // let { showDrawer, cataData } = this.props
+        const { drawerVisible, showDrawer, hideDrawer } = this.props.viewStore
+
         // let items = this.getItems(cataData) //获取分类列表
         return (
             <View className="topiclist-menu">
                 <AtDrawer
-                    onClose={this.closeDrawer}
+                    onClose={hideDrawer}
                     onItemClick={this.clickCata}
                     style="position:absolute;"
-                    // show={showDrawer || null}
-                    // items={items || null}
+                    show={drawerVisible}
+                    items={[]}
                 />
-                <Image onClick={this.showDrawer} className="image  left" src={require('../../assets/img/cata.png')} />
-                <Text>menu </Text>
+                <Image onClick={showDrawer} className="image  left" src={require('../../assets/img/cata.png')} />
+                <Text onClick={hideDrawer}>menu </Text>
                 <Image onClick={this.toUser} className="image right" src={require('../../assets/img/login.png')} />
             </View>
         )

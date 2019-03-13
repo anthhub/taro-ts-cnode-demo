@@ -13,7 +13,7 @@
         "outDir": "lib",
         "noUnusedLocals": true,
         "noUnusedParameters": true,
-        "strictNullChecks": true,
+        "strictNullChecks": false,
         "sourceMap": true,
         "jsx": "preserve",
         "rootDirs": ["./src"],
