@@ -1,3 +1,4 @@
+import { autobind } from 'core-decorators'
 import { observable } from 'mobx'
 
 import { StoreExt } from '@lib/extent/store'
@@ -6,6 +7,7 @@ import Taro from '@tarojs/taro'
 
 import { Pages, pagesMap } from './data'
 
+@autobind
 export class GlobalStore extends StoreExt {
     @observable
     pagesMap = pagesMap

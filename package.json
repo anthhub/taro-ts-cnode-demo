@@ -38,6 +38,7 @@
         "@types/lodash": "^4.14.123",
         "classnames": "^2.2.6",
         "concurrently": "^4.1.0",
+        "core-decorators": "^0.20.0",
         "es6-promise": "^4.2.6",
         "file-type": "^10.9.0",
         "husky": "^1.2.0",
@@ -51,10 +52,10 @@
         "stylelint-config-standard": "^18.2.0",
         "stylelint-scss": "^3.5.4",
         "taro": "^0.0.7",
+        "taro-ui": "^1.5.2",
         "tslint": "^5.13.1",
         "tslint-customization": "^1.0.3",
         "tslint-react": "^3.6.0",
-        "taro-ui": "^1.5.2",
         "webfonts-generator": "^0.4.0"
     },
     "devDependencies": {
