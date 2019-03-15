@@ -8,6 +8,10 @@ import Taro, { Component, Config } from '@tarojs/taro'
 
 import store from './store'
 
+console.log('================store====================')
+console.log(store)
+console.log('====================================')
+
 es6Promise.polyfill()
 
 class App extends Component {

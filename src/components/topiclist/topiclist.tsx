@@ -41,11 +41,15 @@ class TopicList extends Component<IProps> {
         // this.props.getNextList && this.props.getNextList({ page: page + 1, limit, tab: currentCata.key })
     }
     render() {
-        const { topicList } = this.props.topicStore
+        const {
+            topicStore: { topicList },
+            globalStore,
+        } = this.props
+
         return (
             <ScrollView style={{ height: '650PX' }} onScrollToLower={this.onScrollToLower.bind(this)} scrollY={true}>
                 {topicList.map(item => (
-                    <Topic item={item} />
+                    <Topic item={item} globalStore={globalStore} />
                 ))}
             </ScrollView>
         )

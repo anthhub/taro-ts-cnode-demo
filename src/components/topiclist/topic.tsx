@@ -3,15 +3,21 @@ import './topic.less'
 import { myTimeToLocal } from '@lib/utils/date'
 import { Image, Text, View } from '@tarojs/components'
 import Taro, { Component } from '@tarojs/taro'
+import { autobind } from 'core-decorators'
 
 interface IProps {
     item?: ITopic
+    globalStore?: IGlobalStore
 }
 
+@autobind
 class Topic extends Component<IProps> {
-    //跳转到详情页
+    // 跳转到详情页
     goToDetail(topic) {
-        Taro.navigateTo({ url: '/pages/detail/index?topicid=' + topic.id })
+        const {
+            globalStore: { navigateTo },
+        } = this.props
+        navigateTo('detail', { topicid: topic.id })
     }
     render() {
         const { item } = this.props
