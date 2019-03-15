@@ -2,7 +2,7 @@ import { Image, Text, View } from '@tarojs/components'
 import Taro, { Component } from '@tarojs/taro'
 import { IHeadProps } from '../../interfaces/IHead'
 import './head.less'
-class Head extends Component<IHeadProps, {}> {
+class Head extends Component<IHeadProps> {
     render() {
         const { loginname, avatar_url } = this.props
         return (

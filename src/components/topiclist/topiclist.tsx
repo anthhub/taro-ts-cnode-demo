@@ -4,24 +4,8 @@ import { ScrollView } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
 import Taro, { Component } from '@tarojs/taro'
 
-// import { getNextList, getTopicList } from '../../actions/topiclist'
 import Topic from './topic'
 
-// @connect(
-//   function(store) {
-//     return { ...store.topiclist, currentCata: store.menu.currentCata };
-//   },
-//   function(dispatch) {
-//     return {
-//       getTopicList(params) {
-//         dispatch(getTopicList(params));
-//       },
-//       getNextList(params) {
-//         dispatch(getNextList(params));
-//       }
-//     };
-//   }
-// )
 interface IProps {
     viewStore?: IViewStore
     globalStore?: IGlobalStore
