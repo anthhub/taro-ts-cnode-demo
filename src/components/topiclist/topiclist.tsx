@@ -31,14 +31,15 @@ interface IProps {
 @observer
 @autobind
 class TopicList extends Component<IProps> {
-    componentWillMount() {
-        // let { page, limit, currentCata } = this.props
-        // this.props.getTopicList && this.props.getTopicList({ page, limit, tab: currentCata.key })
-    }
-    //触发分页请求 肯定是要请求下一页的  没有总页码
+    // 触发分页请求 肯定是要请求下一页的  没有总页码
     onScrollToLower() {
-        // let { page, limit, currentCata } = this.props
-        // this.props.getNextList && this.props.getNextList({ page: page + 1, limit, tab: currentCata.key })
+        console.log('============onScrollToLower========================')
+        console.log('onScrollToLower')
+        console.log('====================================')
+        const {
+            topicStore: { setPage, page },
+        } = this.props
+        setPage(page + 1)
     }
     render() {
         const {
@@ -47,7 +48,7 @@ class TopicList extends Component<IProps> {
         } = this.props
 
         return (
-            <ScrollView style={{ height: '650PX' }} onScrollToLower={this.onScrollToLower.bind(this)} scrollY={true}>
+            <ScrollView style={{ height: '650PX' }} onScrollToLower={this.onScrollToLower} scrollY={true}>
                 {topicList.map(item => (
                     <Topic item={item} globalStore={globalStore} />
                 ))}

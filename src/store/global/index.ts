@@ -18,14 +18,15 @@ export class GlobalStore extends StoreExt {
         this.rootStore = rootStore
     }
 
-    navigateTo(page: Pages, data: PlainObject = {}) {
+    navigateTo(page: Pages, params: PlainObject = {}) {
         let url = this.pagesMap[page]
         if (!url) {
+            Taro.showToast({ title: '页面不存在' })
             return
         }
 
-        const paramStr = Object.keys(data)
-            .map(key => key + '=' + data[key])
+        const paramStr = Object.keys(params)
+            .map(key => key + '=' + params[key])
             .join('&')
 
         url = url + url.includes('?') ? '&' : '?' + paramStr
