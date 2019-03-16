@@ -1,12 +1,16 @@
+import { autobind } from 'core-decorators'
+
+import { Auth, User } from '@entities/user'
 import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
-import { autobind } from 'core-decorators'
 
 @autobind
 export class UserStore extends StoreExt {
-    userInfo: IUser
+    userInfo: IUser = new User()
 
-    userAuth: IAuth
+    userAuth: IAuth = new Auth()
+
+    accesstoken = ''
 
     rootStore: RootStore
     constructor(rootStore: RootStore) {
@@ -15,8 +19,8 @@ export class UserStore extends StoreExt {
     }
 
     // 验证用户信息
-    async validateUser() {
-        if (this.user.accesstoken) {
+    validateUser() {
+        if (this.accesstoken) {
             return true
         }
         return false
@@ -25,10 +29,11 @@ export class UserStore extends StoreExt {
     // 获取token
     async accessUserToken(accesstoken: string) {
         const data = await this.api.user.checkUserToken({ accesstoken })
-        if (data.success) {
-            this.userAuth = data
+        if (data) {
             this.getUserInfo(data.loginname)
-            this.rootStore.routerStore.navigateTo('user')
+            this.accesstoken = accesstoken
+            this.userAuth = new Auth(data)
+            this.rootStore.routerStore.redirectTo('user')
         }
     }
     // 获取用户信息

@@ -4,24 +4,10 @@ import { autobind } from 'core-decorators'
 
 import { Button, Input, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
-// import { connect } from '@tarojs/redux'
 import Taro, { Component } from '@tarojs/taro'
 
-// import { accessUserToken } from '../../actions/user'
 import Head from '../../components/head/head'
 
-// @connect(
-//     function(store) {
-//         return { user: store.user }
-//     },
-//     function(dispatch) {
-//         return {
-//             accessUserToken(params) {
-//                 return dispatch(accessUserToken(params))
-//             },
-//         }
-//     }
-// )
 interface IProps {
     userStore?: IUserStore
     routerStore?: IRouterStore
@@ -38,21 +24,12 @@ class Login extends Component<IProps> {
     changeToken(event) {
         this.token = event.target.value
     }
-    //验证token
+    // 验证token
     loginToken() {
         const {
             userStore: { accessUserToken },
         } = this.props
         accessUserToken(this.token)
-        // if (this.state.token) {
-        //     if (this.props.accessUserToken) {
-        //         this.props.accessUserToken({ accesstoken: this.state.token }).then(result => {
-        //             Taro.redirectTo({ url: '/pages/user/user' })
-        //         })
-        //     }
-        // } else {
-        //     Taro.showToast({ title: '请输入秘钥再进行登录验证!', icon: 'none' })
-        // }
     }
     render() {
         return (

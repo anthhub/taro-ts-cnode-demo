@@ -1,8 +1,8 @@
 import { Reply } from '@entities/reply'
 import { Author } from '@entities/user'
-import { Entity, EntityBase } from '@lib/decorator/entity'
+import { entity, EntityBase } from '@lib/decorator/entity'
 
-@Entity
+@entity
 export class Topic extends EntityBase<Topic> {
     readonly id: string
     author_id: string
@@ -18,7 +18,7 @@ export class Topic extends EntityBase<Topic> {
     author: Author
 }
 
-@Entity
+@entity
 export class TopicDetail extends Topic {
     is_collect: boolean
     reply: Reply[]
@@ -28,7 +28,7 @@ export class TopicDetail extends Topic {
     }
 }
 
-@Entity
+@entity
 export class RecentTopic extends EntityBase<RecentTopic> {
     readonly id: string
     author: Author

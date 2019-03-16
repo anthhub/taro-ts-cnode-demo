@@ -1,23 +1,26 @@
-import { Entity, EntityBase } from '@lib/decorator/entity'
+import { entity, EntityBase, field } from '@lib/decorator/entity'
 
-@Entity
+@entity
 export class Author extends EntityBase<Author> {
-    loginname: string
-    avatar_url: string
+    @field loginname: string
+    @field avatar_url: string
 }
 
-@Entity
+@entity
 export class User extends EntityBase<User> {
-    loginname: string
-    avatar_url: string
-    githubUsername: string
-    create_at: string
-    score: number
+    @field loginname: string
+    @field avatar_url: string
+    @field githubUsername: string
+    @field create_at: string
+    @field score: number
 }
 
-@Entity
+@entity
 export class Auth extends EntityBase<Auth> {
+    @field
     id: string
+    @field
     loginname: string
+    @field
     avatar_url: string
 }

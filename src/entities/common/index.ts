@@ -1,6 +1,6 @@
-export class Result<Entity> {
+export class Result<entity> {
     success: boolean
     error_msg?: string
-    data?: Entity
+    data?: entity
     [propName: string]: any
 }

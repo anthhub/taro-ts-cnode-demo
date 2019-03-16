@@ -1,7 +1,7 @@
 import { Author } from '@entities/user'
-import { Entity, EntityBase } from '@lib/decorator/entity'
+import { entity, EntityBase } from '@lib/decorator/entity'
 
-@Entity
+@entity
 export class Reply extends EntityBase<Reply> {
     readonly id: string
     author: Author
@@ -12,7 +12,7 @@ export class Reply extends EntityBase<Reply> {
     is_uped: boolean
 }
 
-@Entity
+@entity
 export class RecentReply extends EntityBase<RecentReply> {
     readonly id: string
     author: Author

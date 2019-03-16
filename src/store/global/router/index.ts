@@ -18,29 +18,41 @@ export class RouterStore extends StoreExt {
         this.rootStore = rootStore
     }
 
+    redirectTo(page: Pages, params: PlainObject = {}) {
+        const url = this.filterPage(page, params)
+        if (url) {
+            Taro.redirectTo({ url })
+        }
+    }
+
     navigateTo(page: Pages, params: PlainObject = {}) {
-        let url = this.pagesMap[page]
+        const url = this.filterPage(page, params)
+        if (url) {
+            Taro.navigateTo({ url })
+        }
+    }
+
+    private filterPage(page: Pages, params) {
+        const url = this.pagesMap[page]
         if (!url) {
             Taro.showToast({ title: '页面不存在' })
             return
         }
 
-        const paramStr = Object.keys(params)
-            .map(key => key + '=' + params[key])
-            .join('&')
-
-        url = url + url.includes('?') ? '&' : '?' + paramStr
-
         if (page === 'user') {
             // 用户页面鉴权
             if (!this.rootStore.userStore.validateUser()) {
-                Taro.navigateTo({ url })
+                this.navigateTo('login', params)
                 return
             }
         }
 
-        Taro.navigateTo({ url: this.pagesMap[page] })
-    }
+        const paramStr =
+            (url.includes('?') ? '&' : '?') +
+            Object.keys(params)
+                .map(key => key + '=' + params[key])
+                .join('&')
 
-    protected effects(): void {}
+        return '/' + url + paramStr
+    }
 }
