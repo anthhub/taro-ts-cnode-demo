@@ -24,19 +24,19 @@ import Head from '../../components/head/head'
 // )
 interface IProps {
     userStore?: IUserStore
-    globalStore?: IGlobalStore
+    routerStore?: IRouterStore
 }
-@inject(({ userStore, globalStore }: IStore) => ({ globalStore, userStore }))
+@inject(({ userStore, routerStore }: IStore) => ({ routerStore, userStore }))
 @observer
 @autobind
 class Login extends Component<IProps> {
+    token: string = null
+
     config = {
         navigationBarTitleText: '登录',
     }
     changeToken(event) {
-        // if (event && event.target) {
-        //     this.setState({ token: event.target.value })
-        // }
+        this.token = event.target.value
     }
     //验证token
     loginToken() {

@@ -8,7 +8,7 @@ import Taro from '@tarojs/taro'
 import { Pages, pagesMap } from './data'
 
 @autobind
-export class GlobalStore extends StoreExt {
+export class RouterStore extends StoreExt {
     @observable
     pagesMap = pagesMap
 

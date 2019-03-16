@@ -34,10 +34,10 @@ import { IDetailProps, IDetailState } from '../../interfaces/IDetail'
 // )
 interface IProps {
     viewStore?: IViewStore
-    globalStore?: IGlobalStore
+    routerStore?: IRouterStore
     topicStore?: ITopicStore
 }
-@inject(({ viewStore, globalStore, topicStore }: IStore) => ({ viewStore, globalStore, topicStore }))
+@inject(({ viewStore, routerStore, topicStore }: IStore) => ({ viewStore, routerStore, topicStore }))
 @observer
 @autobind
 class Detail extends Component<IProps> {

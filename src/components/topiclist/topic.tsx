@@ -7,7 +7,7 @@ import { autobind } from 'core-decorators'
 
 interface IProps {
     item?: ITopic
-    globalStore?: IGlobalStore
+    routerStore?: IRouterStore
 }
 
 @autobind
@@ -15,7 +15,7 @@ class Topic extends Component<IProps> {
     // 跳转到详情页
     goToDetail(topic) {
         const {
-            globalStore: { navigateTo },
+            routerStore: { navigateTo },
         } = this.props
         navigateTo('detail', { topicid: topic.id })
     }

@@ -10,9 +10,9 @@ import Taro, { Component } from '@tarojs/taro'
 
 interface IProps {
     viewStore?: IViewStore
-    globalStore?: IGlobalStore
+    routerStore?: IRouterStore
 }
-@inject(({ viewStore, globalStore }: IStore) => ({ viewStore, globalStore }))
+@inject(({ viewStore, routerStore }: IStore) => ({ viewStore, routerStore }))
 @observer
 @autobind
 class Menu extends Component<IProps> {
@@ -22,7 +22,7 @@ class Menu extends Component<IProps> {
     }
 
     toUser() {
-        const { navigateTo } = this.props.globalStore
+        const { navigateTo } = this.props.routerStore
         navigateTo('user')
     }
     render() {
@@ -30,13 +30,7 @@ class Menu extends Component<IProps> {
         const items = cataData.map(item => item.value)
         return (
             <View className="topiclist-menu">
-                <AtDrawer
-                    className="atdrawer"
-                    onClose={hideDrawer}
-                    onItemClick={this.clickCata}
-                    show={drawerVisible}
-                    items={items}
-                />
+                <AtDrawer className="atdrawer" onClose={hideDrawer} onItemClick={this.clickCata} show={drawerVisible} items={items} />
 
                 <Image onClick={showDrawer} className="image  left" src={require('../../assets/img/cata.png')} />
                 <Text onClick={hideDrawer}>{currentCata.value} </Text>

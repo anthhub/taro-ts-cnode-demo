@@ -8,10 +8,10 @@ import Topic from './topic'
 
 interface IProps {
     viewStore?: IViewStore
-    globalStore?: IGlobalStore
+    routerStore?: IRouterStore
     topicStore?: ITopicStore
 }
-@inject(({ viewStore, globalStore, topicStore }: IStore) => ({ viewStore, globalStore, topicStore }))
+@inject(({ viewStore, routerStore, topicStore }: IStore) => ({ viewStore, routerStore, topicStore }))
 @observer
 @autobind
 class TopicList extends Component<IProps> {
@@ -28,13 +28,13 @@ class TopicList extends Component<IProps> {
     render() {
         const {
             topicStore: { topicList },
-            globalStore,
+            routerStore,
         } = this.props
 
         return (
             <ScrollView style={{ height: '650PX' }} onScrollToLower={this.onScrollToLower} scrollY={true}>
                 {topicList.map(item => (
-                    <Topic item={item} globalStore={globalStore} />
+                    <Topic item={item} routerStore={routerStore} />
                 ))}
             </ScrollView>
         )

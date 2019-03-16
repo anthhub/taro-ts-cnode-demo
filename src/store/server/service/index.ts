@@ -5,7 +5,7 @@ import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
 
 @autobind
-export class ServerStore extends StoreExt {
+export class ServiceStore extends StoreExt {
     @observable
     rootPath = 'https://cnodejs.org/api/v1'
 
