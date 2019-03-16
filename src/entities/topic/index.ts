@@ -21,7 +21,7 @@ export class Topic extends EntityBase<Topic> {
 @entity
 export class TopicDetail extends Topic {
     is_collect: boolean
-    reply: Reply[]
+    replies: Reply[]
 
     constructor(_props: TopicDetail & Topic) {
         super(_props)

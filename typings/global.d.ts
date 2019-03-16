@@ -1,5 +1,6 @@
 declare var process: {
     env: {
+        TARO_ENV: string
         NODE_ENV: string
         APP_ENV: string
         BASEURL: string
@@ -25,6 +26,4 @@ declare interface NumberObject {
 declare interface Window {
     [method: string]: Function
     [property: string]: string
-
-
 }

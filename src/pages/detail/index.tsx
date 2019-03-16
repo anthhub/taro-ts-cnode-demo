@@ -1,7 +1,9 @@
 import './detail.less'
 
 import { autobind } from 'core-decorators'
+import { toJS } from 'mobx'
 
+import Replies from '@components/topicinfo/replies'
 import { Button, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
 // import { connect } from '@tarojs/redux'
@@ -36,8 +38,9 @@ interface IProps {
     viewStore?: IViewStore
     routerStore?: IRouterStore
     topicStore?: ITopicStore
+    userStore?: IUserStore
 }
-@inject(({ viewStore, routerStore, topicStore }: IStore) => ({ viewStore, routerStore, topicStore }))
+@inject(({ viewStore, routerStore, topicStore, userStore }: IStore) => ({ viewStore, routerStore, topicStore, userStore }))
 @observer
 @autobind
 class Detail extends Component<IProps> {
@@ -115,24 +118,30 @@ class Detail extends Component<IProps> {
     render() {
         // const { topicinfo, replies, user } = this.props
         // const { showReplyContent } = this.state
-        const selfPublish = false
-        const {
+
+        let {
             topicStore: { topicInfo },
+            userStore: { userInfo },
         } = this.props
-        // topicinfo.author && user.loginname == topicinfo.author.loginname
+        topicInfo = toJS(topicInfo)
+
+        const selfPublish = topicInfo && topicInfo.author && topicInfo.author.loginname === userInfo.loginname
+
+        const replies = topicInfo ? topicInfo.replies : []
+
         return (
             <View className="detail">
                 {/* {showReplyContent ? (
                     <ReplyContent
-                        onOKReplyContent={this.ReplyContentValue.bind(this)}
-                        onCancelReplyContent={this.closeReplyContent.bind(this)}
+                        onOKReplyContent={this.ReplyContentValue}
+                        onCancelReplyContent={this.closeReplyContent}
                     />
                 ) : null} */}
                 {topicInfo && <TopicInfo selfPublish={selfPublish} topicinfo={topicInfo} />}
-                {/* <Replies user={user} onReplyToReply={this.replyToReply.bind(this)} replies={replies} onAdmire={this.admire.bind(this)} />
-                <Button className="replyBtn" onClick={this.Reply.bind(this)}>
+                {replies && <Replies user={userInfo} onReplyToReply={this.replyToReply} replies={replies} onAdmire={this.admire} />}
+                <Button className="replyBtn" onClick={this.Reply}>
                     回复
-                </Button> */}
+                </Button>
             </View>
         )
     }

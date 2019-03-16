@@ -35,6 +35,7 @@ export class TopicStore extends StoreExt {
 
     async loadTopicInfo(params) {
         const topicInfo = await this.api.topic.getTopicInfo(params)
+
         runInAction(() => (this.topicInfo = topicInfo))
     }
 
