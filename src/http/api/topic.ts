@@ -1,18 +1,17 @@
-import { Result } from '@entities/common'
 import apiObject from '@http/constants'
 import request from '@http/request'
 
 export default {
-    getTopics(data?) {
-        return request.get(apiObject.getTopics, data || { limit: 20 }) as Promise<Result<ITopic[]>>
+    async getTopics(data?) {
+        return (await request.get(apiObject.getTopics, data || {})).data as ITopic[]
     },
-    getTopicInfo(data?: { id: string }) {
-        return request.get(apiObject.getTopicInfo, data || {}) as Promise<Result<ITopicDetail>>
+    async getTopicInfo(data?: { id: string }) {
+        return (await request.get(apiObject.getTopicInfo, data || {})).data as ITopicDetail
     },
-    createTopic(data?) {
-        return request.post(apiObject.createTopic, data || {}) as Promise<Result<null>>
+    async createTopic(data?) {
+        return await request.post(apiObject.createTopic, data || {})
     },
-    updateTopic(data?) {
-        return request.post(apiObject.replyTopic, data || {}) as Promise<Result<null>>
+    async updateTopic(data?) {
+        return (await request.post(apiObject.replyTopic, data || {})).data
     },
 }

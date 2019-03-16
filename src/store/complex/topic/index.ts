@@ -10,6 +10,9 @@ export class TopicStore extends StoreExt {
     topicList: ITopic[] = []
 
     @observable
+    topicInfo: ITopicDetail = null
+
+    @observable
     page = 0
 
     @computed
@@ -30,6 +33,11 @@ export class TopicStore extends StoreExt {
         this.page = page
     }
 
+    async loadTopicInfo(params) {
+        const topicInfo = await this.api.topic.getTopicInfo(params)
+        runInAction(() => (this.topicInfo = topicInfo))
+    }
+
     protected effects(): void {
         reaction(() => this.topicList, topicList => this.setCache('topicList', topicList))
 
@@ -41,7 +49,7 @@ export class TopicStore extends StoreExt {
     private async apendList(params?) {
         let topicList: ITopic[]
         try {
-            topicList = (await this.api.topic.getTopics(params)).data
+            topicList = await this.api.topic.getTopics(params)
         } catch (error) {
             topicList = await this.getCache('topicList')
         }
@@ -53,7 +61,7 @@ export class TopicStore extends StoreExt {
     private async loadList(params?) {
         let topicList: ITopic[]
         try {
-            topicList = (await this.api.topic.getTopics(params)).data
+            topicList = await this.api.topic.getTopics(params)
         } catch (error) {
             topicList = await this.getCache('topicList')
         }
