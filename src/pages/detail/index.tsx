@@ -9,8 +9,8 @@ import Taro, { Component, PageConfig } from '@tarojs/taro'
 
 // import { admireTopic, getTopicInfo, replyContent } from '../../actions/topiclist'
 // import { validateUser } from '../../actions/user'
-import Replies from '../../components/topicinfo/replies'
-import ReplyContent from '../../components/topicinfo/replycontent'
+// import Replies from '../../components/topicinfo/replies'
+// import ReplyContent from '../../components/topicinfo/replycontent'
 import TopicInfo from '../../components/topicinfo/topicinfo'
 import { IDetailProps, IDetailState } from '../../interfaces/IDetail'
 
@@ -128,7 +128,7 @@ class Detail extends Component<IProps> {
                         onCancelReplyContent={this.closeReplyContent.bind(this)}
                     />
                 ) : null} */}
-                <TopicInfo selfPublish={selfPublish} topicinfo={topicInfo} />
+                {topicInfo && <TopicInfo selfPublish={selfPublish} topicinfo={topicInfo} />}
                 {/* <Replies user={user} onReplyToReply={this.replyToReply.bind(this)} replies={replies} onAdmire={this.admire.bind(this)} />
                 <Button className="replyBtn" onClick={this.Reply.bind(this)}>
                     回复

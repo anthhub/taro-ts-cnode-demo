@@ -12,7 +12,7 @@ es6Promise.polyfill()
 
 class App extends Component {
     config: Config = {
-        pages: ['pages/login/login', 'pages/index/index', 'pages/user/user'],
+        pages: ['pages/index/index', 'pages/login/login', 'pages/user/user', 'pages/detail/index'],
 
         window: {
             backgroundTextStyle: 'light',

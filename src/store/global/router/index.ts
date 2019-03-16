@@ -5,7 +5,7 @@ import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
 import Taro from '@tarojs/taro'
 
-import { Pages, pagesMap } from './data'
+import { Pages, pagesMap } from '../../../route'
 
 @autobind
 export class RouterStore extends StoreExt {
