@@ -15,6 +15,7 @@ import Taro, { Component, PageConfig } from '@tarojs/taro'
 // import ReplyContent from '../../components/topicinfo/replycontent'
 import TopicInfo from '../../components/topicinfo/topicinfo'
 import { IDetailProps, IDetailState } from '../../interfaces/IDetail'
+import ReplyContent from '@components/topicinfo/replycontent'
 
 // @connect(
 //     function(store): IDetailProps {
@@ -83,11 +84,13 @@ class Detail extends Component<IProps> {
         // }
     }
     Reply() {
-        // validateUser(this.props.user).then(result => {
-        //     if (result) {
-        //         this.setState({ showReplyContent: true })
-        //     }
-        // })
+        const {
+            userStore: { validateUser },
+        } = this.props
+
+        if (validateUser()) {
+            this.setState({ showReplyContent: true })
+        }
     }
     closeReplyContent() {
         // this.setState({ showReplyContent: false })
@@ -113,11 +116,11 @@ class Detail extends Component<IProps> {
     }
     // 提供给子组件使用的函数
     replyToReply(reply) {
-        // this.setState({ currentReply: reply, showReplyContent: true })
+        this.setState({ currentReply: reply, showReplyContent: true })
     }
     render() {
         // const { topicinfo, replies, user } = this.props
-        // const { showReplyContent } = this.state
+        const { showReplyContent } = this.state
 
         let {
             topicStore: { topicInfo },
@@ -131,12 +134,9 @@ class Detail extends Component<IProps> {
 
         return (
             <View className="detail">
-                {/* {showReplyContent ? (
-                    <ReplyContent
-                        onOKReplyContent={this.ReplyContentValue}
-                        onCancelReplyContent={this.closeReplyContent}
-                    />
-                ) : null} */}
+                {showReplyContent && (
+                    <ReplyContent onOKReplyContent={this.ReplyContentValue} onCancelReplyContent={this.closeReplyContent} />
+                )}
                 {topicInfo && <TopicInfo selfPublish={selfPublish} topicinfo={topicInfo} />}
                 {replies && <Replies user={userInfo} onReplyToReply={this.replyToReply} replies={replies} onAdmire={this.admire} />}
                 <Button className="replyBtn" onClick={this.Reply}>

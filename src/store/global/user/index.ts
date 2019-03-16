@@ -10,7 +10,7 @@ export class UserStore extends StoreExt {
 
     userAuth: IAuth = new Auth()
 
-    accesstoken = ''
+    accesstoken = '3876f1ab-97d3-414e-8cbc-157365f0a977'
 
     rootStore: RootStore
     constructor(rootStore: RootStore) {
