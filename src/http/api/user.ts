@@ -3,10 +3,10 @@ import apiObject from '@http/constants'
 import request from '@http/request'
 
 export default {
-    checkUserToken(data?: { accesstoken: string }) {
-        return request.post(apiObject.checkUserToken, data || {}) as Promise<Result<null> & IAuth>
+    async checkUserToken(data: { accesstoken: string }) {
+        return (await request.post(apiObject.checkUserToken, data || {})) as Result<null> & IAuth
     },
-    getUserInfo(data?: { loginname: string }) {
-        return request.get(apiObject.getUserInfo, data || {}) as Promise<Result<IUser>>
+    async getUserInfo(data: { loginname: string }) {
+        return (await request.get(apiObject.getUserInfo + data.loginname, {})) as Result<null> & IUser
     },
 }

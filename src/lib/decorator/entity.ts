@@ -13,7 +13,7 @@ class EntityBase<T> {
 
 function Entity<T extends new (...args: any[]) => {}>(constructor: T) {
     return class extends constructor {
-// tslint:disable-next-line: no-any
+        // tslint:disable-next-line: no-any
         constructor(...props: any[]) {
             super()
             if (!props.length) {

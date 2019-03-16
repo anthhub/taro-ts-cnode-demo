@@ -39,7 +39,7 @@ export class TopicStore extends StoreExt {
     }
 
     protected effects(): void {
-        reaction(() => this.topicList, topicList => this.setCache('topicList', topicList))
+        // reaction(() => this.topicList, topicList => this.setCache('topicList', topicList))
 
         reaction(() => this.tab, tab => this.loadList({ tab }))
 
@@ -51,7 +51,7 @@ export class TopicStore extends StoreExt {
         try {
             topicList = await this.api.topic.getTopics(params)
         } catch (error) {
-            topicList = await this.getCache('topicList')
+            // topicList = await this.getCache('topicList')
         }
 
         runInAction(() => (this.topicList = [...this.topicList, ...topicList]))

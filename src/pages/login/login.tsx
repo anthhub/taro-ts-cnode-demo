@@ -40,6 +40,10 @@ class Login extends Component<IProps> {
     }
     //验证token
     loginToken() {
+        const {
+            userStore: { accessUserToken },
+        } = this.props
+        accessUserToken(this.token)
         // if (this.state.token) {
         //     if (this.props.accessUserToken) {
         //         this.props.accessUserToken({ accesstoken: this.state.token }).then(result => {
