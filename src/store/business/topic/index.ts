@@ -3,14 +3,14 @@ import { observable, reaction, runInAction, computed, action } from 'mobx'
 
 import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
+import { TopicDetailStore } from './detail'
 
 @autobind
 export class TopicStore extends StoreExt {
-    @observable
-    topicList: ITopic[] = []
+    detail = new TopicDetailStore(this)
 
     @observable
-    topicInfo: ITopicDetail = null
+    topicList: ITopic[] = []
 
     @observable
     page = 0
@@ -31,12 +31,6 @@ export class TopicStore extends StoreExt {
     @action
     setPage(page: number) {
         this.page = page
-    }
-
-    async loadTopicInfo(params) {
-        const topicInfo = await this.api.topic.getTopicInfo(params)
-
-        runInAction(() => (this.topicInfo = topicInfo))
     }
 
     protected effects(): void {

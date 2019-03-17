@@ -7,7 +7,7 @@ export abstract class StoreExt {
     protected readonly getCache = getCache
     protected readonly setCache = setCache
 
-    protected $showToast(title = '成功', icon = 'success', duration = 2000) {
+    protected $showToast(title = '成功', icon = 'none', duration = 2000) {
         Taro.showToast({ title, icon, duration })
     }
 }

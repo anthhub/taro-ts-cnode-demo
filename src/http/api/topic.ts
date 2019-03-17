@@ -5,7 +5,7 @@ export default {
     async getTopics(data?) {
         return (await request.get(apiObject.getTopics, data || {})).data as ITopic[]
     },
-    async getTopicInfo(data?: { id: string }) {
+    async getTopicDetail(data?: { id: string }) {
         return (await request.get(apiObject.getTopicInfo + data.id)).data as ITopicDetail
     },
     async createTopic(data?) {

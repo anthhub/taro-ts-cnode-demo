@@ -64,9 +64,11 @@ class Detail extends Component<IProps> {
         }
 
         const {
-            topicStore: { loadTopicInfo },
+            topicStore: {
+                detail: { loadTopicDetail },
+            },
         } = this.props
-        loadTopicInfo(params)
+        loadTopicDetail(params)
     }
     admire(reply) {
         // const { user } = this.props
@@ -83,7 +85,7 @@ class Detail extends Component<IProps> {
         //     this.getDetail()
         // }
     }
-    Reply() {
+    reply() {
         const {
             userStore: { validateUser },
         } = this.props
@@ -96,7 +98,7 @@ class Detail extends Component<IProps> {
         // this.setState({ showReplyContent: false })
     }
     // 评论
-    ReplyContentValue(content) {
+    replyContentValue(content) {
         // const { user } = this.props
         // const { currentReply } = this.state
         // const reply_id = currentReply ? currentReply.id : null
@@ -123,23 +125,25 @@ class Detail extends Component<IProps> {
         const { showReplyContent } = this.state
 
         let {
-            topicStore: { topicInfo },
+            topicStore: {
+                detail: { topicDetail },
+            },
             userStore: { userInfo },
         } = this.props
-        topicInfo = toJS(topicInfo)
+        topicDetail = toJS(topicDetail)
 
-        const selfPublish = topicInfo && topicInfo.author && topicInfo.author.loginname === userInfo.loginname
+        const selfPublish = topicDetail && topicDetail.author && topicDetail.author.loginname === userInfo.loginname
 
-        const replies = topicInfo ? topicInfo.replies : []
+        const replies = topicDetail ? topicDetail.replies : []
 
         return (
             <View className="detail">
                 {showReplyContent && (
-                    <ReplyContent onOKReplyContent={this.ReplyContentValue} onCancelReplyContent={this.closeReplyContent} />
+                    <ReplyContent onOKReplyContent={this.replyContentValue} onCancelReplyContent={this.closeReplyContent} />
                 )}
-                {topicInfo && <TopicInfo selfPublish={selfPublish} topicinfo={topicInfo} />}
+                {topicDetail && <TopicInfo selfPublish={selfPublish} topicinfo={topicDetail} />}
                 {replies && <Replies user={userInfo} onReplyToReply={this.replyToReply} replies={replies} onAdmire={this.admire} />}
-                <Button className="replyBtn" onClick={this.Reply}>
+                <Button className="replyBtn" onClick={this.reply}>
                     回复
                 </Button>
             </View>
