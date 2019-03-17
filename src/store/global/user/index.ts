@@ -6,7 +6,7 @@ import { RootStore } from '@store'
 
 @autobind
 export class UserStore extends StoreExt {
-    userAuth: IAuth = new Auth({ avatar_url: 'null', id: 'null', loginname: 'null' })
+    userAuth: IAuth = new Auth()
 
     userInfo: IUser = new User()
 

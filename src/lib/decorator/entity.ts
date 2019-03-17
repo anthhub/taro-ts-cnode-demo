@@ -11,6 +11,7 @@ class EntityBase<T> {
  *  实体类装饰器, 自动构建类属性, 构造函数空参赋值null
  */
 function entity<T extends new (...args: any[]) => {}>(constructor: T) {
+    // 闭包
     const thefieldStore = fieldStore
     fieldStore = {}
 

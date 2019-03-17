@@ -3,10 +3,10 @@ import apiObject from '@http/constants'
 import request from '@http/request'
 
 export default {
-    replyTopic(data?) {
-        return request.post(apiObject.replyTopic, data || {}) as Promise<Result<null>>
+    async replyTopic(data?) {
+        return await request.post(apiObject.replyTopic, data || {})
     },
-    upReply(data?) {
-        return request.post(apiObject.createTopic, data || {}) as Promise<Result<null>>
+    async upReply(data?: { id: string }) {
+        return await request.post(apiObject.upReply + data.id, data || {})
     },
 }

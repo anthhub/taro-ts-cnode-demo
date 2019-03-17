@@ -62,7 +62,6 @@ class Detail extends Component<IProps> {
             mdrender: true,
             //  accesstoken: user.accesstoken
         }
-
         const {
             topicStore: {
                 detail: { loadTopicDetail },
