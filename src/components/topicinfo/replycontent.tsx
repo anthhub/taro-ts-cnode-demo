@@ -6,33 +6,38 @@ import { autobind } from 'core-decorators'
 import { Button, Textarea, View } from '@tarojs/components'
 import Taro, { Component } from '@tarojs/taro'
 
+interface IProps {
+    onOKReplyContent?: (value: string) => void
+    onCancelReplyContent?: () => void
+}
+
 @autobind
-class ReplyContent extends Component {
+class ReplyContent extends Component<IProps> {
+    state = { value: '' }
+
     btnOK() {
-        // if (this.state.value) {
-        //   let value = this.state.value;
-        //   this.props.onOKReplyContent && this.props.onOKReplyContent(value);
-        // } else {
-        //   Taro.showToast({ title: "请输入评论内容", icon: "none" });
-        // }
+        if (this.state.value) {
+            this.props.onOKReplyContent(this.state.value)
+        } else {
+            Taro.showToast({ title: '请输入评论内容', icon: 'none' })
+        }
     }
-    btnCancel() {
-        // this.props.onCancelReplyContent && this.props.onCancelReplyContent();
-    }
+
     changeContent(event) {
-        // if (event && event.target) {
-        //   this.setState({ value: event.target.value });
-        // }
+        this.setState({ value: event.target.value })
     }
     render() {
+        const { onCancelReplyContent } = this.props
+        const { value } = this.state
+
         return (
             <View className="replycontent">
-                <Textarea onInput={this.changeContent} className="replycontent-text" placeholder="请输入回复内容" />
+                <Textarea value={value} onInput={this.changeContent} className="replycontent-text" placeholder="请输入回复内容" />
                 <View className="replycontent-btngroup">
                     <Button onClick={this.btnOK} className="btn">
                         确定
                     </Button>
-                    <Button onClick={this.btnCancel} className="btn">
+                    <Button onClick={onCancelReplyContent} className="btn">
                         取消
                     </Button>
                 </View>

@@ -6,7 +6,18 @@ import './replies.less'
 import { myTimeToLocal } from '@lib/utils/date'
 // import { validateUser } from '../../actions/user'
 const isweapp = process.env.TARO_ENV === 'weapp' //小程序环境
-class Replies extends Component {
+
+import { autobind } from 'core-decorators'
+
+interface IProps {
+    user: IUser
+    onReplyToReply: (reply: string) => void
+    replies: IReply[]
+    onAdmire: (reply: string) => void
+}
+
+@autobind
+class Replies extends Component<IProps> {
     admire(reply) {
         // let { user } = this.props
         // validateUser(user).then(result => {
