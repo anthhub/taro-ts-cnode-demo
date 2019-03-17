@@ -7,20 +7,21 @@ export class Author extends EntityBase<Author> {
 }
 
 @entity
-export class User extends EntityBase<User> {
-    @field loginname: string
-    @field avatar_url: string
+export class User extends Author {
     @field githubUsername: string
     @field create_at: string
     @field score: number
+
+    constructor(_props?: User) {
+        super(_props)
+    }
 }
 
 @entity
-export class Auth extends EntityBase<Auth> {
-    @field
-    readonly id: string
-    @field
-    loginname: string
-    @field
-    avatar_url: string
+export class Auth extends Author {
+    @field readonly id: string
+
+    constructor(_props?: Auth) {
+        super(_props)
+    }
 }

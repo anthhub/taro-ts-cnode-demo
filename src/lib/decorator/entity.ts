@@ -12,11 +12,14 @@ class EntityBase<T> {
  */
 
 function entity<T extends new (...args: any[]) => {}>(constructor: T) {
+    const thefieldStore = fieldStore
+    fieldStore = {}
+
     return class extends constructor {
         constructor(...props) {
             super()
             const prop = props[0]
-            Object.keys(fieldStore).map(item => (this[item] = prop ? prop[fieldStore[item]] : null))
+            Object.keys(thefieldStore).map(item => (this[item] = prop ? prop[thefieldStore[item]] : null))
             fieldStore = {}
         }
     }

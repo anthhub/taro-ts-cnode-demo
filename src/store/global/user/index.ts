@@ -6,9 +6,9 @@ import { RootStore } from '@store'
 
 @autobind
 export class UserStore extends StoreExt {
-    userInfo: IUser = new User()
-
     userAuth: IAuth = new Auth()
+
+    userInfo: IUser = new User()
 
     accesstoken = '3876f1ab-97d3-414e-8cbc-157365f0a977'
 
