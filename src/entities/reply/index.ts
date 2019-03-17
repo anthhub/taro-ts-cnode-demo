@@ -1,21 +1,21 @@
 import { Author } from '@entities/user'
-import { entity, EntityBase } from '@lib/decorator/entity'
+import { entity, EntityBase, field } from '@lib/decorator/entity'
 
 @entity
 export class Reply extends EntityBase<Reply> {
-    readonly id: string
-    author: Author
-    content: string
-    ups: string[]
-    create_at: string
-    reply_id: string
-    is_uped: boolean
+    @field readonly id: string
+    @field author: Author
+    @field content: string
+    @field ups: string[]
+    @field create_at: string
+    @field reply_id: string
+    @field is_uped: boolean
 }
 
 @entity
 export class RecentReply extends EntityBase<RecentReply> {
-    readonly id: string
-    author: Author
-    title: string
-    last_reply_at: string
+    @field readonly id: string
+    @field author: Author
+    @field title: string
+    @field last_reply_at: string
 }

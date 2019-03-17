@@ -1,37 +1,37 @@
 import { Reply } from '@entities/reply'
 import { Author } from '@entities/user'
-import { entity, EntityBase } from '@lib/decorator/entity'
+import { entity, EntityBase, field } from '@lib/decorator/entity'
 
 @entity
 export class Topic extends EntityBase<Topic> {
-    readonly id: string
-    author_id: string
-    tab: string
-    content: string
-    title: string
-    last_reply_at: string
-    good: boolean
-    top: boolean
-    reply_count: number
-    visit_count: number
-    create_at: string
-    author: Author
+    @field readonly id: string
+    @field author_id: string
+    @field tab: string
+    @field content: string
+    @field title: string
+    @field last_reply_at: string
+    @field good: boolean
+    @field top: boolean
+    @field reply_count: number
+    @field visit_count: number
+    @field create_at: string
+    @field author: Author
 }
 
 @entity
 export class TopicDetail extends Topic {
-    is_collect: boolean
-    replies: Reply[]
+    @field is_collect: boolean
+    @field replies: Reply[]
 
-    constructor(_props: TopicDetail & Topic) {
+    constructor(_props?: TopicDetail & Topic) {
         super(_props)
     }
 }
 
 @entity
 export class RecentTopic extends EntityBase<RecentTopic> {
-    readonly id: string
-    author: Author
-    title: string
-    last_reply_at: string
+    @field readonly id: string
+    @field author: Author
+    @field title: string
+    @field last_reply_at: string
 }
