@@ -42,34 +42,33 @@ export class TopicDetailStore extends StoreExt {
         // return false
     }
 
-    // async replyContent(params) {
-    //     let result = await postJSON(api.replytopic + params.topicid + '/replies', params)
-    //     if (result && result.data && result.data.success) {
-    //         // 成功评论
-    //         return result.data
-    //     } else {
-    //         // 评论失败
-    //         Taro.showToast({ title: '评论失败!', icon: 'none' })
-    //     }
-    //     return false
-    // }
-    // async submitTopic(params) {
-    //     let result = await postJSON(api.createtopic, params)
-    //     if (result && result.data && result.data.success) {
-    //         return result.data
-    //     } else {
-    //         Taro.showToast({ title: '发布话题失败!', icon: 'none' })
-    //     }
-    //     return false
-    // }
+    async replyContent(params) {
+        const result = await this.api.reply.replyTopic(params)
+        console.log('====================================')
+        console.log(result)
+        console.log('====================================')
+        // let result = await postJSON(api.replytopic + params.topicid + '/replies', params)
+        // if (result && result.data && result.data.success) {
+        //     // 成功评论
+        //     return result.data
+        // } else {
+        //     // 评论失败
+        //     Taro.showToast({ title: '评论失败!', icon: 'none' })
+        // }
+        // return false
+    }
+
+    async submitTopic(params) {
+        const result = await this.api.topic.createTopic(params)
+        console.log('====================================')
+        console.log(result)
+        console.log('====================================')
+    }
     // // 更新话题
-    // async updateTopic(params) {
-    //     let result = await postJSON(api.updatetopic, params)
-    //     if (result && result.data && result.data.success) {
-    //         return result.data
-    //     } else {
-    //         Taro.showToast({ title: '更新话题失败!', icon: 'none' })
-    //     }
-    //     return false
-    // }
+    async updateTopic(params) {
+        const result = await this.api.topic.updateTopic(params)
+        console.log('====================================')
+        console.log(result)
+        console.log('====================================')
+    }
 }
