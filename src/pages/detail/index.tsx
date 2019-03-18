@@ -4,37 +4,13 @@ import { autobind } from 'core-decorators'
 import { toJS } from 'mobx'
 
 import Replies from '@components/topicinfo/replies'
+import ReplyContent from '@components/topicinfo/replycontent'
 import { Button, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
-// import { connect } from '@tarojs/redux'
 import Taro, { Component, PageConfig } from '@tarojs/taro'
 
-// import { admireTopic, getTopicInfo, replyContent } from '../../actions/topiclist'
-// import { validateUser } from '../../actions/user'
-// import Replies from '../../components/topicinfo/replies'
-// import ReplyContent from '../../components/topicinfo/replycontent'
 import TopicInfo from '../../components/topicinfo/topicinfo'
-import { IDetailProps, IDetailState } from '../../interfaces/IDetail'
-import ReplyContent from '@components/topicinfo/replycontent'
 
-// @connect(
-//     function(store): IDetailProps {
-//         return {
-//             getTopicInfo,
-//             admireState: store.topiclist.admireState,
-//             user: store.user,
-//             topicinfo: store.topiclist.topicinfo,
-//             replies: store.topiclist.replies,
-//         }
-//     },
-//     function(dispatch) {
-//         return {
-//             getTopicInfo(params) {
-//                 dispatch(getTopicInfo(params))
-//             },
-//         }
-//     }
-// )
 interface IProps {
     viewStore?: IViewStore
     routerStore?: IRouterStore
@@ -49,7 +25,8 @@ class Detail extends Component<IProps> {
         navigationBarTitleText: '话题详情',
     }
 
-    state: IDetailState = {
+    state = {
+        currentReply: '',
         showReplyContent: false, // 显示回复组件
     }
     componentWillMount() {
@@ -83,18 +60,8 @@ class Detail extends Component<IProps> {
             await admireTopicReply(params)
             this.getDetail()
         }
-        // .then(result => {
-        // if (result.success) {
-        //     this.getDetail()
-        // }
-        // })
     }
-    componentWillReceiveProps(nextProps) {
-        // if (this.props.admireState != nextProps.admireState) {
-        //     // 发生变化 请求数据
-        //     this.getDetail()
-        // }
-    }
+
     reply() {
         const {
             userStore: { validateUser },
@@ -118,12 +85,7 @@ class Detail extends Component<IProps> {
         const { currentReply } = this.state
         const reply_id = currentReply ? currentReply.id : null
         const preName = currentReply ? '@' + currentReply.author.loginname + '   ' : '' // 评论人的昵称
-        const params = {
-            reply_id,
-            content: preName + content,
-            accesstoken,
-            topicid: this.$router.params.topicid,
-        }
+        const params = { reply_id, content: preName + content, accesstoken, topicid: this.$router.params.topicid }
         await replyContent(params)
         this.closeReplyContent()
         this.getDetail()
