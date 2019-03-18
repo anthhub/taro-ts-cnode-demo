@@ -1,13 +1,13 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Button, Image, RichText } from '@tarojs/components'
-
 // import { myTimeToLocal } from '../../utils/date'
 import './replies.less'
-import { myTimeToLocal } from '@lib/utils/date'
-// import { validateUser } from '../../actions/user'
-const isweapp = process.env.TARO_ENV === 'weapp' //小程序环境
 
 import { autobind } from 'core-decorators'
+
+import { myTimeToLocal } from '@lib/utils/date'
+import { Image, RichText, Text, View } from '@tarojs/components'
+import Taro, { Component } from '@tarojs/taro'
+
+const isweapp = process.env.TARO_ENV === 'weapp' // 小程序环境
 
 interface IProps {
     user: IUser

@@ -8,7 +8,7 @@ import ReplyContent from '@components/topicinfo/replycontent'
 import { Button, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
 import Taro, { Component, PageConfig } from '@tarojs/taro'
-
+import {IDetailState} from '../../interfaces/IDetail';
 import TopicInfo from '../../components/topicinfo/topicinfo'
 
 interface IProps {
@@ -25,7 +25,7 @@ class Detail extends Component<IProps> {
         navigationBarTitleText: '话题详情',
     }
 
-    state = {
+    state: IDetailState = {
         currentReply: '',
         showReplyContent: false, // 显示回复组件
     }
