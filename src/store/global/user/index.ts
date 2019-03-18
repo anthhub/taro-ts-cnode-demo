@@ -12,10 +12,14 @@ export class UserStore extends StoreExt {
 
     accesstoken = '3876f1ab-97d3-414e-8cbc-157365f0a977'
 
+    // accesstoken = ''
+
     rootStore: RootStore
     constructor(rootStore: RootStore) {
         super()
         this.rootStore = rootStore
+
+        this.accessUserToken && this.accessUserToken(this.accesstoken)
     }
 
     // 验证用户信息

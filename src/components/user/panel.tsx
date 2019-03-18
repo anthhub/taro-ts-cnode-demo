@@ -1,13 +1,28 @@
-import Taro, { Component } from '@tarojs/taro'
-import { View, Text, Image } from '@tarojs/components'
 import './panel.less'
-import { myTimeToLocal } from '../../utils/date'
-class Panel extends Component {
+
+import { myTimeToLocal } from '@lib/utils/date'
+import { Image, Text, View } from '@tarojs/components'
+import Taro, { Component } from '@tarojs/taro'
+
+import { autobind } from 'core-decorators'
+
+interface IProps {
+    listData?: IRecentReply[] | IRecentTopic[]
+    title?: string
+}
+
+@autobind
+class Panel extends Component<IProps> {
     toDetail(item) {
         Taro.navigateTo({ url: '/pages/detail/index?topicid=' + item.id })
     }
     render() {
-        let { listData, title } = this.props
+        const { listData, title } = this.props
+
+        console.log('==========listData============')
+        console.log(listData)
+        console.log('====================================')
+
         return (
             <View className="topic-panel">
                 <View className="topic-panel-title">{title}</View>
