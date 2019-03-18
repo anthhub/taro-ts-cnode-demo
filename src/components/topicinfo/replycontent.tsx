@@ -17,6 +17,7 @@ class ReplyContent extends Component<IProps> {
 
     btnOK() {
         if (this.state.value) {
+            // 父组件方法
             this.props.onOKReplyContent(this.state.value)
         } else {
             Taro.showToast({ title: '请输入评论内容', icon: 'none' })

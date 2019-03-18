@@ -94,26 +94,28 @@ class Detail extends Component<IProps> {
         }
     }
     closeReplyContent() {
-        // this.setState({ showReplyContent: false })
+        this.setState({ showReplyContent: false })
     }
     // 评论
-    replyContentValue(content) {
-        // const { user } = this.props
-        // const { currentReply } = this.state
-        // const reply_id = currentReply ? currentReply.id : null
-        // const preName = currentReply ? '@' + currentReply.author.loginname + '   ' : '' // 评论人的昵称
-        // const params = {
-        //     reply_id: reply_id,
-        //     content: preName + content,
-        //     accesstoken: user.accesstoken,
-        //     topicid: this.$router.params.topicid,
-        // }
-        // replyContent(params).then(result => {
-        //     if (result.success) {
-        //         this.getDetail()
-        //         this.closeReplyContent()
-        //     }
-        // })
+    async replyContentValue(content) {
+        const {
+            userStore: { accesstoken },
+            topicStore: {
+                detail: { replyContent },
+            },
+        } = this.props
+        const { currentReply } = this.state
+        const reply_id = currentReply ? currentReply.id : null
+        const preName = currentReply ? '@' + currentReply.author.loginname + '   ' : '' // 评论人的昵称
+        const params = {
+            reply_id,
+            content: preName + content,
+            accesstoken,
+            topicid: this.$router.params.topicid,
+        }
+        await replyContent(params)
+        this.getDetail()
+        this.closeReplyContent()
     }
     // 提供给子组件使用的函数
     replyToReply(reply) {
@@ -125,7 +127,7 @@ class Detail extends Component<IProps> {
 
         let {
             topicStore: {
-                detail: { topicDetail },
+                detail: { topicDetail: topicDetail },
             },
             userStore: { userInfo },
         } = this.props

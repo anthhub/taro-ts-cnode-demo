@@ -7,7 +7,7 @@ import { TopicDetailStore } from './detail'
 
 @autobind
 export class TopicStore extends StoreExt {
-    detail = new TopicDetailStore(this)
+    detail: TopicDetailStore = new TopicDetailStore(this)
 
     @observable
     topicList: ITopic[] = []
