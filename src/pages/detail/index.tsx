@@ -130,7 +130,13 @@ class Detail extends Component<IProps> {
     }
     // 提供给子组件使用的函数
     replyToReply(reply) {
-        this.setState({ currentReply: reply, showReplyContent: true })
+        const {
+            userStore: { validateUser },
+        } = this.props
+
+        if (validateUser()) {
+            this.setState({ currentReply: reply, showReplyContent: true })
+        }
     }
     render() {
         const { showReplyContent } = this.state

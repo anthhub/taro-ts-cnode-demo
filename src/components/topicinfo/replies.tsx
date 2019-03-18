@@ -18,24 +18,8 @@ interface IProps {
 
 @autobind
 class Replies extends Component<IProps> {
-    admire(reply) {
-        // let { user } = this.props
-        // validateUser(user).then(result => {
-        //     if (result) {
-        //         this.props.onAdmire && this.props.onAdmire(reply)
-        //     }
-        // })
-    }
-    replyToReply(reply) {
-        // let { user } = this.props
-        // validateUser(user).then(result => {
-        //     if (result) {
-        //         this.props.onReplyToReply && this.props.onReplyToReply(reply)
-        //     }
-        // })
-    }
     render() {
-        let { replies, onAdmire } = this.props
+        const { replies, onAdmire, onReplyToReply } = this.props
         return (
             <View className="topicinfo-replies">
                 {replies.map((item, index) => {
@@ -65,7 +49,7 @@ class Replies extends Component<IProps> {
                                     />
                                     <Text>{item.ups.length}</Text>
                                     <Image
-                                        onClick={this.replyToReply.bind(this, item)}
+                                        onClick={onReplyToReply.bind(this, item)}
                                         className="topicinfo-repliy-image"
                                         src={require('../../assets/img/zhuan.png')}
                                     />
