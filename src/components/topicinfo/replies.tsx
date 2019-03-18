@@ -35,7 +35,7 @@ class Replies extends Component<IProps> {
         // })
     }
     render() {
-        let { replies } = this.props
+        let { replies, onAdmire } = this.props
         return (
             <View className="topicinfo-replies">
                 {replies.map((item, index) => {
@@ -59,7 +59,7 @@ class Replies extends Component<IProps> {
                                 </View>
                                 <View className="topicinfo-repliy-right-zan">
                                     <Image
-                                        onClick={this.admire.bind(this, item)}
+                                        onClick={onAdmire.bind(this, item)}
                                         className="topicinfo-repliy-image"
                                         src={item.is_uped ? require('../../assets/img/myzan.png') : require('../../assets/img/zan.png')}
                                     />

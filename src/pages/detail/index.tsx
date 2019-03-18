@@ -56,11 +56,13 @@ class Detail extends Component<IProps> {
         this.getDetail()
     }
     getDetail() {
-        // const { user } = this.props
+        const {
+            userStore: { accesstoken },
+        } = this.props
         const params = {
             id: this.$router.params.topicid,
             mdrender: true,
-            //  accesstoken: user.accesstoken
+            accesstoken,
         }
         const {
             topicStore: {
@@ -69,13 +71,22 @@ class Detail extends Component<IProps> {
         } = this.props
         loadTopicDetail(params)
     }
-    admire(reply) {
-        // const { user } = this.props
-        // const params = { replyid: reply.id, accesstoken: user.accesstoken }
-        // admireTopic(params).then(result => {
-        //     if (result.success) {
-        //         this.getDetail()
-        //     }
+    async admire(reply) {
+        const {
+            userStore: { accesstoken, validateUser },
+            topicStore: {
+                detail: { admireTopicReply },
+            },
+        } = this.props
+        if (validateUser()) {
+            const params = { replyid: reply.id, accesstoken }
+            await admireTopicReply(params)
+            this.getDetail()
+        }
+        // .then(result => {
+        // if (result.success) {
+        //     this.getDetail()
+        // }
         // })
     }
     componentWillReceiveProps(nextProps) {
@@ -114,15 +125,14 @@ class Detail extends Component<IProps> {
             topicid: this.$router.params.topicid,
         }
         await replyContent(params)
-        this.getDetail()
         this.closeReplyContent()
+        this.getDetail()
     }
     // 提供给子组件使用的函数
     replyToReply(reply) {
         this.setState({ currentReply: reply, showReplyContent: true })
     }
     render() {
-        // const { topicinfo, replies, user } = this.props
         const { showReplyContent } = this.state
 
         let {
