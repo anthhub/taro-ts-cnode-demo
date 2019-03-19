@@ -1,4 +1,5 @@
 import { autobind } from 'core-decorators'
+import { observable, runInAction } from 'mobx'
 
 import { Auth, User } from '@entities/user'
 import { StoreExt } from '@lib/extent/store'
@@ -6,10 +7,13 @@ import { RootStore } from '@store'
 
 @autobind
 export class UserStore extends StoreExt {
+    @observable
     userAuth: IAuth = new Auth()
 
+    @observable
     userInfo: IUser = new User()
 
+    @observable
     accesstoken = '3876f1ab-97d3-414e-8cbc-157365f0a977'
 
     // accesstoken = ''
@@ -35,16 +39,19 @@ export class UserStore extends StoreExt {
         const data = await this.api.user.checkUserToken({ accesstoken })
         if (data) {
             this.getUserInfo(data.loginname)
-            this.accesstoken = accesstoken
-            this.userAuth = new Auth(data)
+            runInAction(() => {
+                this.accesstoken = accesstoken
+                this.userAuth = new Auth(data)
+            })
+
             this.rootStore.routerStore.redirectTo('user')
         }
     }
     // 获取用户信息
     private async getUserInfo(loginname: string) {
         const data = await this.api.user.getUserInfo({ loginname })
-        if (data.success) {
-            this.userInfo = data
+        if (data) {
+            runInAction(() => (this.userInfo = new User(data)))
         }
     }
 }

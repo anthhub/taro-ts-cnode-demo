@@ -7,6 +7,6 @@ export default {
         return (await request.post(apiObject.checkUserToken, data || {})) as Result<null> & IAuth
     },
     async getUserInfo(data: { loginname: string }) {
-        return (await request.get(apiObject.getUserInfo + data.loginname, {})) as Result<null> & IUser
+        return (await request.get(apiObject.getUserInfo + data.loginname, {})).data as IUser
     },
 }
