@@ -34,6 +34,7 @@ export class RouterStore extends StoreExt {
 
     private filterPage(page: Pages, params) {
         const url = this.pagesMap[page]
+
         if (!url) {
             Taro.showToast({ title: '页面不存在' })
             return

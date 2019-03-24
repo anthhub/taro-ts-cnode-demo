@@ -14,7 +14,7 @@ export class UserStore extends StoreExt {
     userInfo: IUser = new User()
 
     @observable
-    accesstoken = '3876f1ab-97d3-414e-8cbc-157365f0a977'
+    accesstoken = '5f48a3bb-eec3-4f8d-abd8-dd6bcffbda52'
 
     // accesstoken = ''
 
@@ -23,7 +23,7 @@ export class UserStore extends StoreExt {
         super()
         this.rootStore = rootStore
 
-        this.accessUserToken && this.accessUserToken(this.accesstoken)
+        // this.accessUserToken && this.accessUserToken(this.accesstoken)
     }
 
     // 验证用户信息
