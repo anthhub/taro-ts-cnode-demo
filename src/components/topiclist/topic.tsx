@@ -28,7 +28,7 @@ class Topic extends Component<IProps> {
                     <View className="topic-title">
                         {item.top ? (
                             <Text className="topic-up">置顶</Text>
-                        ) : item.tab == 'share' ? (
+                        ) : item.tab === 'share' ? (
                             <Text className="topic-up blue">分享</Text>
                         ) : (
                             <Text className="topic-up blue">问答</Text>

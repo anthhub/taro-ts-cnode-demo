@@ -1,4 +1,3 @@
-// import { connect } from '@tarojs/redux'
 import './replycontent.less'
 
 import { autobind } from 'core-decorators'

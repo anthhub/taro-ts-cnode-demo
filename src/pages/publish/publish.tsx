@@ -8,9 +8,7 @@ import { autobind } from 'core-decorators'
 
 import { Button, Input, Picker, Textarea, View } from '@tarojs/components'
 import { inject, observer } from '@tarojs/mobx'
-// import { connect } from '@tarojs/redux'
 import Taro, { Component } from '@tarojs/taro'
-import { ViewStore } from '@store/global/view'
 
 interface IProps {
     userStore?: IUserStore
@@ -21,6 +19,14 @@ interface IProps {
 @observer
 @autobind
 class Publish extends Component<IProps> {
+    state = {
+        selectCata: null,
+        title: null,
+        content: null,
+        isEdit: false,
+        topicinfo: null,
+    }
+
     componentWillMount() {
         return
         let { edit } = this.$router.params
@@ -32,13 +38,7 @@ class Publish extends Component<IProps> {
             content: topicinfo ? topicinfo.content : '',
         })
     }
-    state = {
-        selectCata: null,
-        title: null,
-        content: null,
-        isEdit: false,
-        topicinfo: null,
-    }
+
     changeCata(event) {
         return
         let { cataData } = this.props
