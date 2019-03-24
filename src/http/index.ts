@@ -1,5 +1,8 @@
-export { default as user } from './api/user'
+import user from './api/user'
+import topic from './api/topic'
 
-export { default as topic } from './api/topic'
+import reply from './api/reply'
 
-export { default as reply } from './api/reply'
+const api = { user, topic, reply }
+
+export default api

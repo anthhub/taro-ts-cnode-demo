@@ -13,7 +13,7 @@ es6Promise.polyfill()
 class App extends Component {
     config: Config = {
         pages: ['pages/index/index',
-         'pages/login/login', 'pages/user/user', 'pages/detail/index', 'pages/publish/publish'
+        //  'pages/login/login', 'pages/user/user', 'pages/detail/index', 'pages/publish/publish'
         ],
 
         window: {

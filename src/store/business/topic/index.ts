@@ -58,7 +58,7 @@ export class TopicStore extends StoreExt {
         try {
             topicList = await this.api.topic.getTopics(params)
         } catch (error) {
-            topicList = await this.getCache('topicList')
+            // topicList = await this.getCache('topicList')  
         }
 
         runInAction(() => (this.topicList = topicList))
