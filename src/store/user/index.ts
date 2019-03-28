@@ -18,11 +18,10 @@ export class UserStore extends StoreExt {
 
     // accesstoken = ''
 
-    rootStore: RootStore
-    constructor(rootStore: RootStore) {
+    rootStore: RootStore = null
+    constructor(_rootStore?: RootStore) {
         super()
-        this.rootStore = rootStore
-
+        // this.rootStore = rootStore
         // this.accessUserToken && this.accessUserToken(this.accesstoken)
     }
 
@@ -44,8 +43,10 @@ export class UserStore extends StoreExt {
                 this.userAuth = new Auth(data)
             })
 
-            this.rootStore.routerStore.redirectTo('user')
+            return true
+            // this.rootStore.routerStore.redirectTo('user')
         }
+        return false
     }
     // 获取用户信息
     private async getUserInfo(loginname: string) {

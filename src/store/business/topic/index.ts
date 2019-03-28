@@ -1,5 +1,5 @@
 import { autobind } from 'core-decorators'
-import { observable, reaction, runInAction, computed, action } from 'mobx'
+import { observable, runInAction, action } from 'mobx'
 
 import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
@@ -15,16 +15,11 @@ export class TopicStore extends StoreExt {
     @observable
     page = 0
 
-    @computed
-    get tab() {
-        return this.rootStore.viewStore.currentCata.key
-    }
-
     rootStore: RootStore = null
-    constructor(rootStore: RootStore) {
+    constructor(_rootStore?: RootStore) {
         super()
-        this.rootStore = rootStore
-        this.effects()
+        // this.rootStore = rootStore
+        // this.effects()
         this.loadList()
     }
 
@@ -33,15 +28,15 @@ export class TopicStore extends StoreExt {
         this.page = page
     }
 
-    protected effects(): void {
-        // reaction(() => this.topicList, topicList => this.setCache('topicList', topicList))
+    // protected effects(): void {
+    //     // reaction(() => this.topicList, topicList => this.setCache('topicList', topicList))
 
-        reaction(() => this.tab, tab => this.loadList({ tab }))
+    //     reaction(() => this.tab, tab => this.loadList({ tab }))
 
-        reaction(() => this.page, page => this.apendList({ tab: this.tab, page }))
-    }
+    //     reaction(() => this.page, page => this.apendList({ tab: this.tab, page }))
+    // }
 
-    private async apendList(params?) {
+    async apendList(params?) {
         let topicList: ITopic[]
         try {
             topicList = await this.api.topic.getTopics(params)
@@ -53,12 +48,12 @@ export class TopicStore extends StoreExt {
         console.log('topicList ', this.topicList)
     }
 
-    private async loadList(params?) {
+    async loadList(params?) {
         let topicList: ITopic[]
         try {
             topicList = await this.api.topic.getTopics(params)
         } catch (error) {
-            // topicList = await this.getCache('topicList')  
+            // topicList = await this.getCache('topicList')
         }
 
         runInAction(() => (this.topicList = topicList))

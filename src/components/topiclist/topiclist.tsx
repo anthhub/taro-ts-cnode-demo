@@ -21,9 +21,11 @@ class TopicList extends Component<IProps> {
         console.log('onScrollToLower')
         console.log('====================================')
         const {
-            topicStore: { setPage, page },
+            topicStore: { setPage, page, apendList },
+            viewStore: { tab },
         } = this.props
         setPage(page + 1)
+        apendList({ tab, page })
     }
     render() {
         const {

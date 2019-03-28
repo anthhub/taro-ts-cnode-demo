@@ -1,23 +1,22 @@
 import { autobind } from 'core-decorators'
-import { UserStore } from '@store/global/user'
-import { RouterStore } from '@store/global/router'
-import { ViewStore } from '@store/global/view'
+
 import { TopicStore } from '@store/business/topic'
+import { RouterStore } from '@store/router'
+import { UserStore } from '@store/user'
+import { ViewStore } from '@store/view'
 
 @autobind
 export class RootStore {
     userStore: UserStore
-
     routerStore: RouterStore
     viewStore: ViewStore
     topicStore: TopicStore
 
     constructor() {
-        this.userStore = new UserStore(this)
-
-        this.routerStore = new RouterStore(this)
-        this.viewStore = new ViewStore(this)
-        this.topicStore = new TopicStore(this)
+        this.userStore = new UserStore()
+        this.routerStore = new RouterStore()
+        this.viewStore = new ViewStore()
+        this.topicStore = new TopicStore()
     }
 }
 

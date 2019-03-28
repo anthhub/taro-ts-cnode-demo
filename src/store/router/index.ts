@@ -4,18 +4,17 @@ import { observable } from 'mobx'
 import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
 import Taro from '@tarojs/taro'
-
-import { Pages, pagesMap } from '../../../route'
+import { pagesMap, Pages } from '../../route'
 
 @autobind
 export class RouterStore extends StoreExt {
     @observable
     pagesMap = pagesMap
 
-    rootStore: RootStore
-    constructor(rootStore: RootStore) {
+    rootStore: RootStore = null
+    constructor(_rootStore?: RootStore) {
         super()
-        this.rootStore = rootStore
+        // this.rootStore = rootStore
     }
 
     redirectTo(page: Pages, params: PlainObject = {}) {
@@ -40,13 +39,13 @@ export class RouterStore extends StoreExt {
             return
         }
 
-        if (page === 'user') {
-            // 用户页面鉴权
-            if (!this.rootStore.userStore.validateUser()) {
-                this.navigateTo('login', params)
-                return
-            }
-        }
+        // if (page === 'user') {
+        //     // 用户页面鉴权
+        //     if (!this.rootStore.userStore.validateUser()) {
+        //         this.navigateTo('login', params)
+        //         return
+        //     }
+        // }
 
         const paramStr =
             (url.includes('?') ? '&' : '?') +

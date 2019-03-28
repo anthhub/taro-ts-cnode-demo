@@ -1,5 +1,5 @@
 import { autobind } from 'core-decorators'
-import { action, observable } from 'mobx'
+import { action, observable, computed } from 'mobx'
 
 import { StoreExt } from '@lib/extent/store'
 import { RootStore } from '@store'
@@ -22,10 +22,15 @@ export class ViewStore extends StoreExt {
     @observable
     currentCata = { key: 'all', value: '全部' }
 
-    rootStore: RootStore
-    constructor(rootStore: RootStore) {
+    @computed
+    get tab() {
+        return this.currentCata.key
+    }
+
+    rootStore: RootStore = null
+    constructor(_rootStore?: RootStore) {
         super()
-        this.rootStore = rootStore
+        // this.rootStore = rootStore
     }
 
     @action

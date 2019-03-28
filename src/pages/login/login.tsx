@@ -28,8 +28,11 @@ class Login extends Component<IProps> {
     loginToken() {
         const {
             userStore: { accessUserToken },
+            routerStore: { redirectTo },
         } = this.props
-        accessUserToken(this.token)
+        if (accessUserToken(this.token)) {
+            redirectTo('user')
+        }
     }
     render() {
         return (

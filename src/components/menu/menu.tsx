@@ -11,19 +11,32 @@ import Taro, { Component } from '@tarojs/taro'
 interface IProps {
     viewStore?: IViewStore
     routerStore?: IRouterStore
+    userStore?: IUserStore
+    topicStore?: ITopicStore
 }
-@inject(({ viewStore, routerStore }: IStore) => ({ viewStore, routerStore }))
+@inject(({ viewStore, routerStore, userStore, topicStore }: IStore) => ({ viewStore, routerStore, userStore, topicStore }))
 @observer
 @autobind
 class Menu extends Component<IProps> {
     clickCata(index) {
-        const { cataData, changeCata } = this.props.viewStore
+        const {
+            viewStore: { cataData, changeCata, tab },
+            topicStore: { loadList },
+        } = this.props
         changeCata(cataData[index])
+        loadList({ tab })
     }
 
     toUser() {
-        const { navigateTo } = this.props.routerStore
-        navigateTo('user')
+        const {
+            routerStore: { navigateTo },
+            userStore: { validateUser },
+        } = this.props
+        if (validateUser()) {
+            navigateTo('user')
+        } else {
+            navigateTo('login')
+        }
     }
     render() {
         const { drawerVisible, showDrawer, hideDrawer, cataData, currentCata } = this.props.viewStore

@@ -19,10 +19,6 @@ class Panel extends Component<IProps> {
     render() {
         const { listData, title } = this.props
 
-        console.log('==========listData============')
-        console.log(listData)
-        console.log('====================================')
-
         return (
             <View className="topic-panel">
                 <View className="topic-panel-title">{title}</View>
