@@ -1,14 +1,9 @@
-[![Build Status](https://travis-ci.org/ariesjia/taro-ts-mobx-boilerplate.svg?branch=master)](https://travis-ci.org/ariesjia/taro-ts-mobx-boilerplate)
 
 ## USEAGE
 ```sh
-1. git clone git@github.com:ariesjia/taro-ts-mobx-boilerplate.git
+1. git clone git@github.com:anthhub/taro-ts-cnode-demo.git
 2. yarn
-3. // Do What You Want
-```
+2. npm run dev:h5 / npm run dev:weapp
 
-## ICON FONT
-1. put svg file to icon/svgs/
-2. will auto generate font scss file to scr/generate-icon.scss (only generate woff base64 font)
 
 
