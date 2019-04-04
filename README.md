@@ -5,7 +5,7 @@
 2. yarn
 2. npm run dev:h5 / npm run dev:weapp
 
-
+## 该程序样式非原创, taro + ts + mobx 逻辑架构原创
 
 ## 部分功能截图
 
